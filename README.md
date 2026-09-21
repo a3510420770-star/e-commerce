@@ -1,4 +1,4 @@
-> **当前分支 `tools`。** 这份源码按章节分了分支：`git checkout chat` … `git checkout ops`
+> **当前分支 `ops`。** 这份源码按章节分了分支：`git checkout chat` … `git checkout ops`
 > 是各章当时的代码，`git checkout main` 回到最终完整版本。
 >
 > 各章分支只保留到该章为止的文件，代码本身取自最终版本。最终代码的引用关系是按完整项目
