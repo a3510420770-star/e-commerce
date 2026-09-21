@@ -10,6 +10,7 @@ from fastapi.staticfiles import StaticFiles
 from app.api.actions import router as actions_router
 from app.api.agent import router as agent_router
 from app.api.chat import router as chat_router
+from app.api.conversations import router as conversations_router
 from app.api.extract import router as extract_router
 from app.graph import runtime
 
@@ -77,6 +78,7 @@ app.include_router(actions_router)
 app.include_router(chat_router)
 app.include_router(extract_router)
 app.include_router(agent_router)
+app.include_router(conversations_router)
 
 # 后台各页共用外壳(样式 + 取数/重跑脚本 + 导航),抽成文件放静态目录
 app.mount("/static", StaticFiles(directory=_STATIC_DIR), name="static")
