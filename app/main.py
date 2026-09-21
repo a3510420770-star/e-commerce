@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from app.api.actions import router as actions_router
 from app.api.agent import router as agent_router
 from app.api.chat import router as chat_router
 from app.api.extract import router as extract_router
@@ -72,6 +73,7 @@ def _check_context_budget() -> None:
 
 
 app = FastAPI(title="Pxx", version="0.1.0", lifespan=lifespan)
+app.include_router(actions_router)
 app.include_router(chat_router)
 app.include_router(extract_router)
 app.include_router(agent_router)
