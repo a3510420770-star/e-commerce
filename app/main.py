@@ -7,13 +7,20 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from app.api.acceptance import router as acceptance_router
 from app.api.actions import router as actions_router
+from app.api.admin import router as admin_router
 from app.api.agent import router as agent_router
 from app.api.chat import router as chat_router
 from app.api.conversations import router as conversations_router
 from app.api.extract import router as extract_router
 from app.api.feedback import router as feedback_router
+from app.api.jobs import router as jobs_router
+from app.api.kb import router as kb_router
+from app.api.observability import router as observability_router
+from app.api.rageval import router as rageval_router
 from app.api.review import router as review_router
+from app.api.topics import router as topics_router
 from app.graph import runtime
 
 # 让 app.* 的 INFO 日志可见(uvicorn 默认不给 app 记录器配 INFO handler,
@@ -83,6 +90,13 @@ app.include_router(agent_router)
 app.include_router(conversations_router)
 app.include_router(feedback_router)
 app.include_router(review_router)
+app.include_router(topics_router)
+app.include_router(acceptance_router)
+app.include_router(kb_router)
+app.include_router(rageval_router)
+app.include_router(observability_router)
+app.include_router(admin_router)
+app.include_router(jobs_router)
 
 # 后台各页共用外壳(样式 + 取数/重跑脚本 + 导航),抽成文件放静态目录
 app.mount("/static", StaticFiles(directory=_STATIC_DIR), name="static")
