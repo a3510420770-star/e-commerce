@@ -35,7 +35,7 @@ services:
       retries: 3
 
   minio:
-    image: minio/minio:RELEASE.2024-05-28T17-19-04Z
+    image: milvusdb/minio:RELEASE.2024-05-28T17-19-04Z   # 2026-09 MinIO 官方从 Docker Hub 删了 minio/minio,改用 Milvus 维护的同版本镜像
     container_name: pxx-milvus-minio
     environment:
       MINIO_ACCESS_KEY: minioadmin

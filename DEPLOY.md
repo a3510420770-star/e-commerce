@@ -85,8 +85,8 @@ docker compose up -d
 > ```bash
 > docker pull docker.m.daocloud.io/library/mysql:8
 > docker tag  docker.m.daocloud.io/library/mysql:8  mysql:8
-> docker pull docker.m.daocloud.io/minio/minio:RELEASE.2024-05-28T17-19-04Z
-> docker tag  docker.m.daocloud.io/minio/minio:RELEASE.2024-05-28T17-19-04Z minio/minio:RELEASE.2024-05-28T17-19-04Z
+> docker pull docker.m.daocloud.io/milvusdb/minio:RELEASE.2024-05-28T17-19-04Z
+> docker tag  docker.m.daocloud.io/milvusdb/minio:RELEASE.2024-05-28T17-19-04Z milvusdb/minio:RELEASE.2024-05-28T17-19-04Z
 > docker pull quay.m.daocloud.io/coreos/etcd:v3.5.16
 > docker tag  quay.m.daocloud.io/coreos/etcd:v3.5.16  quay.io/coreos/etcd:v3.5.16
 > docker pull docker.m.daocloud.io/milvusdb/milvus:v2.6.22
