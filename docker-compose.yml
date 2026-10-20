@@ -73,6 +73,10 @@ services:
 
 volumes:
   pxx-mysql-data:
+    name: pxx-mysql-data
   pxx-milvus-etcd:
+    name: pxx-milvus-etcd
   pxx-milvus-minio:
+    name: pxx-milvus-minio
   pxx-milvus-data:
+    name: pxx-milvus-data
