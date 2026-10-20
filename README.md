@@ -187,16 +187,33 @@ curl -s http://localhost:8000/api/agent \
 
 ## 端口与页面
 
-| 端口 | 用途 |
-|---|---|
-| 8000 | 应用（聊天页 `/`） |
-| 8101 / 8102 | MCP Server：物流 / 售后 |
-| 19530 / 9091 | Milvus / 健康检查 |
-| 8110 | 主题分类器（`make classifier-up` 后） |
-| 3000 | Langfuse（`make langfuse-up` 后） |
+**只有 8000 是网页。** 其余端口要么是协议端点、要么需要额外启动，浏览器直接打开会看到 404，这是正常的，不代表服务挂了。
 
-其他页面：`/kb` 知识库录入、`/review` 飞轮待审、`/observability` 观测与成本、
-`/topics` 主题分布、`/acceptance` 分类器验收。
+| 地址 | 用途 | 怎么访问 |
+|---|---|---|
+| `http://localhost:8000` | 应用与聊天页 | 浏览器直接打开 |
+| `http://localhost:8000/kb` | 知识库录入 | 同上 |
+| `http://localhost:8000/review` | 飞轮待审 | 同上 |
+| `http://localhost:8000/observability` | 观测与成本 | 同上 |
+| `http://localhost:8000/topics` | 主题分布 | 同上 |
+| `http://localhost:8000/acceptance` | 分类器验收 | 同上 |
+| `http://localhost:8101/mcp` | MCP 物流工具 | 协议端点，浏览器打开是 404 |
+| `http://localhost:8102/mcp` | MCP 售后工具 | 同上 |
+| `http://localhost:9091/healthz` | Milvus 健康检查 | 浏览器可看，返回 `ok` |
+| `localhost:19530` | Milvus | gRPC 端口，不是 HTTP，只给 SDK 用 |
+| `http://localhost:8110` | 主题分类器 | 需先 `make topic-train` + `topic-export` 产出 ONNX，再 `make classifier-up` |
+| `http://localhost:3000` | Langfuse | 需先 `make langfuse-up`，会额外拉起一整套容器 |
+
+MCP Server 不是网页服务，浏览器打不开属正常。要确认它活着，用一次 `initialize`：
+
+```bash
+curl -s -X POST http://localhost:8101/mcp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"probe","version":"1"}}}'
+```
+
+返回 `{"jsonrpc":"2.0","id":1,"result":{...}}` 即服务正常。
 
 ---
 
