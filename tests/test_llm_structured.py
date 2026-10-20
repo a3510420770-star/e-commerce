@@ -155,7 +155,7 @@ def test_flagged_family_forces_non_streaming(monkeypatch):
     """
     seen = {}
 
-    def fake_get_chat_model(streaming=False, model=None, temperature=None, slot="chat"):
+    def fake_get_chat_model(streaming=False, model=None, temperature=None, slot="chat", thinking=True):
         seen["streaming"] = streaming
         raise RuntimeError("stop-here")      # 拿到参数就够,不真建模型
 

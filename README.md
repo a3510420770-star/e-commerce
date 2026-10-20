@@ -266,5 +266,3 @@ Python 版本过新（3.14）。用 `uv sync -p 3.12`。
 
 **镜像拉不下来**
 Docker Hub / quay.io 国内常连不上，可走镜像站拉取后 `docker tag` 回原名，`docker-compose.yml` 不用改。
-
----
